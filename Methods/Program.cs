@@ -110,6 +110,7 @@ namespace Methods
                     if (restChar == ConsoleKey.R)
                     {
                         score = 0;
+                        health = 100;
                         Console.Clear();
                     }
                     else
@@ -133,6 +134,7 @@ namespace Methods
                     if (restChar == ConsoleKey.R)
                     {
                         score = 0;
+                        health = 100;
                         Console.Clear();
                     }
                     else
