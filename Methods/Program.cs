@@ -20,7 +20,7 @@ namespace Methods
             victoryValue = 1000;
 
             //Simulated gameplay
-            while (score < 1000)
+            while (true)
             {
                 Console.WriteLine("Methods Game");
                 Console.WriteLine("");
@@ -30,6 +30,13 @@ namespace Methods
                 Console.WriteLine("+------------+----+");
                 ShowHUD();
 
+                if (score == 0)
+                {
+                    Console.WriteLine("Press any key to get more a Higher Score.");
+                    Console.ReadKey(true);
+                    Console.Clear();
+                }
+
                 score = score + enemyValue;
                 Console.WriteLine("");
                 
@@ -37,30 +44,40 @@ namespace Methods
                 Console.WriteLine("|Your New Score|");
                 Console.WriteLine("+------------+-+");
                 ShowHUD();
+
+                Console.WriteLine("");
+                Console.WriteLine("Continue to press any key to get more a Higher Score.");
             
                 Console.ReadKey(true);
                 Console.Clear();
+
+                if (score == victoryValue)
+                {
+                    Console.WriteLine("Methods Game");
+                    Console.WriteLine("");
+                    Console.WriteLine("+------------+");
+                    ShowHUD();
+                    Console.WriteLine("|You Won!|");
+                    Console.WriteLine("+--------+");
+
+                    Console.ReadKey(true);
+
+                    Console.WriteLine("if you want to play again press [R] key.");
+                    Console.WriteLine("");
+                    Console.WriteLine("if you want to leave the game press any other key.");
+
+                    System.ConsoleKey restChar = Console.ReadKey(true).Key;
+                    if (restChar == ConsoleKey.R)
+                    {
+                        score = 0;
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
             }
-            
-            Console.WriteLine("Methods Game");
-            Console.WriteLine("");
-            Console.WriteLine("+------------+");
-            ShowHUD();
-            Console.WriteLine("|You Won!|");
-            Console.WriteLine("+--------+");
-
-            Console.ReadKey(true);
-
-            Console.WriteLine("if you want to play again press [R] key.");
-            Console.WriteLine("");
-            Console.WriteLine("if you want to leave the game press any other key.");
-
-            //if (nput.GetKey(KeyCode.R))
-            //{
-            //    score = 0;
-            //}
-
-            Console.ReadKey(true);
         }
 
         static void ShowHUD()
