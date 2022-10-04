@@ -9,62 +9,125 @@ namespace Methods
     internal class Program
     {
         static int score;
+        static int health;
+
         static void Main(string[] args)
         {
 
             //Initialization
             score = 0;
+            health = 100;
+            int takeDamage;
+            takeDamage = -5;
+            int healDamage;
+            healDamage = 5;
             int enemyValue;
             enemyValue = 5;
-            int victoryValue;
-            victoryValue = 1000;
 
             //Simulated gameplay
             while (true)
             {
-                Console.WriteLine("Methods Game");
+                GameTitle();
+                Console.WriteLine(" +-----------------+");
+                Console.WriteLine(" |Your Curent Score|");
+                Console.WriteLine(" +------------+----+");
+                ShowScoreHUD();
                 Console.WriteLine("");
+                Console.WriteLine(" +------------------+");
+                Console.WriteLine(" |Your Curent Health|");
+                Console.WriteLine(" +------------+-----+");
+                ShowHeatlhHUD();
+                Console.WriteLine("");
+                Console.WriteLine(" Press any key to Continue");
+                Console.ReadKey(true);
+                Console.Clear();
 
-                Console.WriteLine("+-----------------+");
-                Console.WriteLine("|Your Curent Score|");
-                Console.WriteLine("+------------+----+");
-                ShowHUD();
-
-                if (score == 0)
+                GameTitle();
+                Console.WriteLine("");
+                Console.WriteLine(" !!!See a Enemy in front of You!!!");
+                Console.WriteLine("");
+                Console.WriteLine(" Press [E] to Fight them or Press [Q] to Heal yourself (you can't heal past your max health)");
+                while (true)
                 {
-                    Console.WriteLine("Press any key to get more a Higher Score.");
-                    Console.ReadKey(true);
-                    Console.Clear();
+                    System.ConsoleKey combatChar = Console.ReadKey(true).Key;
+                    if (combatChar == ConsoleKey.E)
+                    {
+                        score = score + enemyValue;
+                        health = health + takeDamage;
+                        break;
+                    }
+                    else if (combatChar == ConsoleKey.Q)
+                    {
+                        while (health <= 95)
+                        {
+                            health = health + healDamage;
+                            Console.WriteLine(" you gained +5 health");
+                            break;
+                        }
+                    }
                 }
 
-                score = score + enemyValue;
+                Console.Clear();
+
+                GameTitle();
                 Console.WriteLine("");
-                
-                Console.WriteLine("+--------------+");
-                Console.WriteLine("|Your New Score|");
-                Console.WriteLine("+------------+-+");
-                ShowHUD();
+                Console.WriteLine(" You took 5 damage but...");
+                Console.WriteLine("");
+                Console.WriteLine(" ...You won the fight!");
+                Console.WriteLine("");
+
+                Console.WriteLine(" +--------------+");
+                Console.WriteLine(" |Your New Score|");
+                Console.WriteLine(" +------------+-+");
+                ShowScoreHUD();
+                Console.WriteLine("");
+                Console.WriteLine(" +---------------+");
+                Console.WriteLine(" |Your New Heatlh|");
+                Console.WriteLine(" +------------+--+");
+                ShowHeatlhHUD();
 
                 Console.WriteLine("");
-                Console.WriteLine("Continue to press any key to get more a Higher Score.");
+                Console.WriteLine(" Press any key to Continue");
             
                 Console.ReadKey(true);
                 Console.Clear();
 
-                if (score == victoryValue)
+                if (score == 200 && health >= 1)
                 {
-                    Console.WriteLine("Methods Game");
-                    Console.WriteLine("");
-                    Console.WriteLine("+------------+");
-                    ShowHUD();
-                    Console.WriteLine("|You Won!|");
-                    Console.WriteLine("+--------+");
+                    GameTitle();
+                    Console.WriteLine(" +------------+");
+                    ShowScoreHUD();
+                    Console.WriteLine(" |You Won!|");
+                    Console.WriteLine(" +--------+");
 
                     Console.ReadKey(true);
 
-                    Console.WriteLine("if you want to play again press [R] key.");
+                    Console.WriteLine(" if you want to play again press [R] key.");
                     Console.WriteLine("");
-                    Console.WriteLine("if you want to leave the game press any other key.");
+                    Console.WriteLine(" if you want to leave the game press any other key.");
+
+                    System.ConsoleKey restChar = Console.ReadKey(true).Key;
+                    if (restChar == ConsoleKey.R)
+                    {
+                        score = 0;
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else if (health == 0)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine(" You Died!");
+                    Console.WriteLine("");
+
+                    Console.ReadKey(true);
+
+                    Console.WriteLine(" if you want to play again press [R] key.");
+                    Console.WriteLine("");
+                    Console.WriteLine(" if you want to leave the game press any other key.");
 
                     System.ConsoleKey restChar = Console.ReadKey(true).Key;
                     if (restChar == ConsoleKey.R)
@@ -80,31 +143,53 @@ namespace Methods
             }
         }
 
-        static void ShowHUD()
+        static void ShowScoreHUD()
         {
             if (score >= 0 && score < 10)
             {
-                Console.WriteLine("|Score: " + score + "    |");
-                Console.WriteLine("+------------+");
+                Console.WriteLine(" |Score: " + score + "    |");
+                Console.WriteLine(" +------------+");
             }
 
             if (score >= 10 && score < 100)
             {
-                Console.WriteLine("|Score: " + score + "   |");
-                Console.WriteLine("+------------+");
+                Console.WriteLine(" |Score: " + score + "   |");
+                Console.WriteLine(" +------------+");
             }
 
-            if (score >= 100 && score < 1000)
+            if (score >= 100 && score <= 200)
             {
-                Console.WriteLine("|Score: " + score + "  |");
-                Console.WriteLine("+------------+");
+                Console.WriteLine(" |Score: " + score + "  |");
+                Console.WriteLine(" +------------+");
+            }
+        }
+
+        static void ShowHeatlhHUD()
+        {
+            if (health == 100)
+            {
+                Console.WriteLine(" |Heatlh: " + health + " |");
+                Console.WriteLine(" +------------+");
             }
 
-            if (score == 1000)
+            if (health >= 10 && health < 100)
             {
-                Console.WriteLine("|Score: " + score + " |");
-                Console.WriteLine("+--------+---+");
+                Console.WriteLine(" |Heatlh: " + health + "  |");
+                Console.WriteLine(" +------------+");
             }
+
+            if (health >= 0 && health < 10)
+            {
+                Console.WriteLine(" |Heatlh: " + health + "   |");
+                Console.WriteLine(" +------------+");
+            }
+        }
+
+        static void GameTitle()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("  The Methods Game");
+            Console.WriteLine("");
         }
     }
 }
