@@ -58,11 +58,15 @@ namespace Methods
                     }
                     else if (combatChar == ConsoleKey.Q)
                     {
-                        while (health <= 95)
+                        if (health <= 95)
                         {
-                            health = health + healDamage;
-                            Console.WriteLine(" you gained +5 health");
-                            break;
+                           health = health + healDamage;
+                           Console.WriteLine(" you gained +5 health");
+                           break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You're health is at Max");
                         }
                     }
                 }
@@ -152,14 +156,12 @@ namespace Methods
                 Console.WriteLine(" |Score: " + score + "    |");
                 Console.WriteLine(" +------------+");
             }
-
-            if (score >= 10 && score < 100)
+            else if (score >= 10 && score < 100)
             {
                 Console.WriteLine(" |Score: " + score + "   |");
                 Console.WriteLine(" +------------+");
             }
-
-            if (score >= 100 && score <= 200)
+            else if (score >= 100 && score <= 200)
             {
                 Console.WriteLine(" |Score: " + score + "  |");
                 Console.WriteLine(" +------------+");
@@ -173,14 +175,12 @@ namespace Methods
                 Console.WriteLine(" |Heatlh: " + health + " |");
                 Console.WriteLine(" +------------+");
             }
-
-            if (health >= 10 && health < 100)
+            else if (health >= 10 && health < 100)
             {
                 Console.WriteLine(" |Heatlh: " + health + "  |");
                 Console.WriteLine(" +------------+");
             }
-
-            if (health >= 0 && health < 10)
+            else if (health >= 0 && health < 10)
             {
                 Console.WriteLine(" |Heatlh: " + health + "   |");
                 Console.WriteLine(" +------------+");
