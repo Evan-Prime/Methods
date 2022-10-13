@@ -46,7 +46,7 @@ namespace Methods
                 Console.WriteLine("");
                 Console.WriteLine(" !!!See a Enemy in front of You!!!");
                 Console.WriteLine("");
-                Console.WriteLine(" Press [E] to Fight them or Press [Q] to Heal yourself (you can't heal past your max health)");
+                Console.WriteLine(" Press [E] to Fight them or Press [Q] to Heal yourself");
                 while (true)
                 {
                     System.ConsoleKey combatChar = Console.ReadKey(true).Key;
@@ -62,7 +62,6 @@ namespace Methods
                         {
                            health = health + healDamage;
                            Console.WriteLine(" you gained +5 health");
-                           break;
                         }
                         else
                         {
